@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Wi-Fi Selector</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"/>
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="index.css">
+</head>
+
+<body>
+    <div id="container">
+        <div class="container-fluid">
+            <h1 id="title">Wi-Fi Selector</h1>
+            <form id="form">
+                <div class="form-group row no-gutters">
+                    <select id="ssid" style="margin-right: 15px" class="form-control col-8" required>
+                        <option value="" disabled selected hidden>Network</option>
+                    </select>
+                    <div class="col">
+                        <button id="btn-refresh" type="button" class="btn btn-dark btn-block">Refresh</button>
+                    </div>
+                </div>
+                <div class="form-group row no-gutters">
+                    <div style="margin-right: 15px" class="col-8">
+                        <input id="wpa2pass" type="password" class="form-control" placeholder="Password" required>
+                    </div>
+                    <div class="col">
+                        <button id="btn-connect" type="submit" class="btn btn-primary btn-block">Connect</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="reconnecting-websocket.min.js"></script>
+    <script src="index.js"></script>
+</body>
+
+</html>

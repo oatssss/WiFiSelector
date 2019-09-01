@@ -1,0 +1,37 @@
+{
+    "name": "WiFiSelector",
+    "description": "Connect to Wifi using a web-based landing page for Arduino based esp8266/esp32",
+    "keywords": "wifi, gui, landing, http, selection, selector, ap, access, point, web, based, portal",
+    "authors":
+    {
+        "name": "Othniel Cundangan",
+        "email": "othniel.cundangan@gmail.com",
+        "url": "https://othnielcundangan.me",
+        "maintainer": true
+    },
+    "repository":
+    {
+        "type": "git",
+        "url": "https://github.com/oatssss/WiFiSelector.git"
+    },
+    "license": "GPLv3",
+    "export":
+    {
+        "exclude":
+        [
+            "react-front-end"
+        ]
+    },
+    "frameworks": "arduino",
+    "platforms":
+    [
+        "atmelavr",
+        "espressif32",
+        "espressif8266"
+    ],
+    "dependencies":
+    {
+        "WebSockets": "2.1.1",
+        "ArduinoJson": "6.11.0"
+    }
+}
