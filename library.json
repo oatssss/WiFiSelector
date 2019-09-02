@@ -1,6 +1,6 @@
 {
     "name": "WiFiSelector",
-    "description": "Connect to Wifi using a web-based landing page for Arduino based esp8266/esp32",
+    "description": "Connect your Arduino based esp8266 to a WiFi access point using a web-based landing page",
     "keywords": "wifi, gui, landing, http, selection, selector, ap, access, point, web, based, portal",
     "authors":
     {
@@ -26,7 +26,6 @@
     "platforms":
     [
         "atmelavr",
-        "espressif32",
         "espressif8266"
     ],
     "dependencies":
