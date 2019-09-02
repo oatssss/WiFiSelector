@@ -15,17 +15,6 @@
         "url": "https://github.com/oatssss/WiFiSelector.git"
     },
     "license": "GPLv3",
-    "exclude":
-    [
-        "react-front-end"
-    ],
-    "export":
-    {
-        "exclude":
-        [
-            "react-front-end"
-        ]
-    },
     "frameworks": "arduino",
     "platforms":
     [
