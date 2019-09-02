@@ -1,6 +1,6 @@
 #include "WifiSelector.h"
-#include "WifiWrapper.h"
-#include "Debugging.h"
+#include "internal/WifiWrapper.h"
+#include "internal/Debugging.h"
 
 #include <FS.h>
 #include <DNSServer.h>
