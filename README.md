@@ -13,7 +13,7 @@ In order for the web server to serve those files, they must be [uploaded to the 
 For example, I upload the file-system with:
 
 >###### platformio.ini
->```
+>``` ini
 >[platformio]
 >data_dir = .pio/libdeps/esp01/WifiSelector/basic-front-end
 >
@@ -29,7 +29,7 @@ For example, I upload the file-system with:
 
 #### Code Usage
 
-```
+``` c++
 #include <WifiSelector.h>
 
 void setup()
