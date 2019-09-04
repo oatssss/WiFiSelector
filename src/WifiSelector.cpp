@@ -26,7 +26,7 @@ bool handleUrlRequest(ESP8266WebServer& httpServer) { // send the right file to 
     PRINT_LN("handleUrlRequest: %s", path.c_str());
 
     if (path.endsWith("/")) {
-        path += "index.html";
+        path += "wifi-selector.html";
     }
 
     String contentType = getContentType(path);
@@ -37,8 +37,15 @@ bool handleUrlRequest(ESP8266WebServer& httpServer) { // send the right file to 
         return true;
     }
 
-    PRINT_LN("\tFile Not Found");
-    httpServer.send(404, "text/plain", "404: Not Found");
+    if (path.endsWith("wifi-selector.html")) {
+        PRINT_LN("\twifi-selector.html wasn't found, please make sure you've uploaded the contents of `WiFiSelector/basic-front-end` to the SPIFFS image");
+        httpServer.send(404, "text/plain", "wifi-selector.html wasn't found, please make sure you've uploaded the contents of `WiFiSelector/basic-front-end` to the SPIFFS image");
+    }
+    else {
+        PRINT_LN("\tFile Not Found");
+        httpServer.send(404, "text/plain", "404: Not Found");
+    }
+
     return false;
 }
 
