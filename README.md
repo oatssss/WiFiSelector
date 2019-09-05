@@ -15,9 +15,10 @@ For example, I upload the file-system with:
 >###### platformio.ini
 >``` ini
 >[platformio]
->data_dir = .pio/libdeps/esp01/WifiSelector/basic-front-end
+>data_dir = .pio\libdeps\esp01_1m\WifiSelector_ID6658\basic-front-end
 >
->[env:esp01]
+>[env:esp01_1m]
+>lib_deps = WifiSelector
 >build_flags = -Wl,-Teagle.flash.1m512.ld
 >```
 >[Other possible options in `build_flags`](https://github.com/esp8266/Arduino/tree/master/tools/sdk/ld)
@@ -38,7 +39,7 @@ void setup()
 
     // WifiSelector::reconnect blocks here and attempts to connect to a saved access point
     // If unsuccessful, the board enables AP mode and creates the network "esp8266-ssid"
-    // HTTP clients connected to the ESP will be served the WiFi Selector landing page
+    // HTTP clients connecting to the ESP will be served the WiFi Selector landing page
     // Unblocks only when the board successfully connects to an AP
 }
 ```
