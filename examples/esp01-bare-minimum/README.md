@@ -8,7 +8,7 @@
 
 #### Tested with (affiliate links):
 
-- [ESP01 (with USB adapter)](https://www.banggood.com/ESP8266-ESP01-WIFI-Transceiver-Wireless-Module-USB-To-ESP8266-Serial-Adapter-Wireless-WIFI-Develoment-Board-p-1408866.htm?p=VG211930430970201902&custlinkid=574792)
+- [ESP01 (with USB adapter)](https://www.banggood.com/ESP8266-ESP01-WIFI-Transceiver-Wireless-Module-USB-To-ESP8266-Serial-Adapter-Wireless-WIFI-Develoment-Board-p-1408866.html?p=VG211930430970201902&custlinkid=574840)
   - To program the board, you can wire up a fancy button like in [this video](https://youtu.be/6uaIWZCRSz8), use a jumper as described [here](https://www.diyhobi.com/flash-program-esp-01-using-usb-serial-adapter/), or just solder GPIO0 to GND like I did below (you won't be able to use the same adapter as a serial monitor though)
 
     <img src="https://raw.githubusercontent.com/oatssss/WiFiSelector/assets/examples/esp01-bare-minimum/gpio0-gnd.png" width="25%" height="25%">
