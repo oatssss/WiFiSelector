@@ -1,7 +1,7 @@
 #pragma once
 
 #include <Arduino.h>
-#include "internal/WebServer.h"
+#include "WiFiSelector/WebServer.h"
 
 class WifiSelectorHandler : public Oats::WebServer::Handler
 {
