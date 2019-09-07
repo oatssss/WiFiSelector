@@ -15,7 +15,7 @@
         "url": "https://github.com/oatssss/WiFiSelector.git"
     },
     "version": "0.0.2",
-    "license": "GPLv3",
+    "license": "lgpl-2.1",
     "frameworks": "arduino",
     "platforms":
     [
