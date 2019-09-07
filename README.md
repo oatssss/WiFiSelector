@@ -2,6 +2,10 @@
 
 This Arduino library makes it easy for your esp8266 to connect to a WiFi access point.
 
+Dependencies:
+- [WebSockets](https://platformio.org/lib/show/549/WebSockets)
+- [ArduinoJson](https://platformio.org/lib/show/64/ArduinoJson)
+
 ## Usage (PlatformIO)
 
 #### Upload SPIFFS Image
