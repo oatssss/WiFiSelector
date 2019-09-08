@@ -43,7 +43,8 @@ void setup()
 
     // WifiSelector::reconnect blocks here and attempts to connect to a saved access point
     // If unsuccessful, the board enables AP mode and creates the network "esp8266-ssid"
-    // HTTP clients connecting to the ESP will be served the WiFi Selector landing page
-    // Unblocks only when the board successfully connects to an AP
+    // protected with password "esp8266-pass"
+    // A DNS server intercepts HTTP requests to any domain and serves the WiFi Selector landing page
+    // The call only unblocks when the board successfully connects to an AP
 }
 ```
