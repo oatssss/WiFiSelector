@@ -33,13 +33,9 @@ void Oats::WebServer::handle() const
 
 void Oats::WebServer::stop()
 {
-    if (m_httpServer) {
-        delete m_httpServer;
-        m_httpServer = nullptr;
-    }
+    delete m_httpServer;
+    m_httpServer = nullptr;
 
-    if (m_wsServer) {
-        delete m_wsServer;
-        m_wsServer = nullptr;
-    }
+    delete m_wsServer;
+    m_wsServer = nullptr;
 }

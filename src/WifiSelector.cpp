@@ -133,7 +133,7 @@ bool parseCommand(const String& text, Command& output)
     output.name = text.substring(0, colonIdx);
 
     // Following text is the argument list delimited by colons
-    for (uint8_t i = 0; i < 2; i++) {
+    for (uint8_t i = 0; i < sizeof(output.args)/sizeof(output.args[0]); i++) {
         size_t prevColonIdx = colonIdx;
         if ((colonIdx = text.indexOf(':', prevColonIdx+1)) < 0) {
             break;

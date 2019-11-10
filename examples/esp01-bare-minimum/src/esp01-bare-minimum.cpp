@@ -1,5 +1,13 @@
 #include <WifiSelector.h>
 
+/*
+You must add the web-page files to the SPIFFS data_dir
+For example, you can put in platformio.ini
+
+[platformio]
+data_dir = .pio\libdeps\esp01_1m\WifiSelector_ID6658\basic-front-end
+*/
+
 void setup() {
   Serial.begin(9600);
   WifiSelector.reconnect("esp8266-ssid", "esp8266-pass");
