@@ -13,40 +13,42 @@ WifiSelectorHandler::WifiSelectorHandler()
     WifiWrapper.scanNetworks();
 }
 
-String getContentType(const String& filename) { // convert the file extension to the MIME type
-    if (filename.endsWith(".html")) return "text/html";
-    if (filename.endsWith(".css")) return "text/css";
-    if (filename.endsWith(".js")) return "application/javascript";
-    return "text/plain";
-}
-
-bool handleUrlRequest(ESP8266WebServer& httpServer) { // send the right file to the client (if it exists)
-
-    String path = httpServer.uri();
-    PRINT_LN("handleUrlRequest: %s", path.c_str());
-
-    if (path.endsWith("/")) {
-        path += "wifi-selector.html";
+namespace {
+    String getContentType(const String& filename) { // convert the file extension to the MIME type
+        if (filename.endsWith(".html")) return "text/html";
+        if (filename.endsWith(".css")) return "text/css";
+        if (filename.endsWith(".js")) return "application/javascript";
+        return "text/plain";
     }
 
-    String contentType = getContentType(path);
-    if (SPIFFS.exists(path)) {
-        File file = SPIFFS.open(path, "r");
-        httpServer.streamFile(file, contentType);
-        file.close();
-        return true;
-    }
+    bool handleUrlRequest(ESP8266WebServer& httpServer) { // send the right file to the client (if it exists)
 
-    if (path.endsWith("wifi-selector.html")) {
-        PRINT_LN("\twifi-selector.html wasn't found, please make sure you've uploaded the contents of `WiFiSelector/basic-front-end` to the SPIFFS image");
-        httpServer.send(404, "text/plain", "wifi-selector.html wasn't found, please make sure you've uploaded the contents of `WiFiSelector/basic-front-end` to the SPIFFS image");
-    }
-    else {
-        PRINT_LN("\tFile Not Found");
-        httpServer.send(404, "text/plain", "404: Not Found");
-    }
+        String path = httpServer.uri();
+        PRINT_LN("handleUrlRequest: %s", path.c_str());
 
-    return false;
+        if (path.endsWith("/")) {
+            path += "wifi-selector.html";
+        }
+
+        String contentType = getContentType(path);
+        if (SPIFFS.exists(path)) {
+            File file = SPIFFS.open(path, "r");
+            httpServer.streamFile(file, contentType);
+            file.close();
+            return true;
+        }
+
+        if (path.endsWith("wifi-selector.html")) {
+            PRINT_LN("\twifi-selector.html wasn't found, please make sure you've uploaded the contents of `WiFiSelector/basic-front-end` to the SPIFFS image");
+            httpServer.send(404, "text/plain", "wifi-selector.html wasn't found, please make sure you've uploaded the contents of `WiFiSelector/basic-front-end` to the SPIFFS image");
+        }
+        else {
+            PRINT_LN("\tFile Not Found");
+            httpServer.send(404, "text/plain", "404: Not Found");
+        }
+
+        return false;
+    }
 }
 
 void WifiSelectorHandler::setupHttpHandlers(ESP8266WebServer& httpServer)
@@ -93,6 +95,7 @@ void WifiSelectorHandler::setupWsHandlers(WebSocketsServer& wsServer)
                 break;
             }
             case WStype_CONNECTED: {
+                // POTENTIAL TODO: Setup ping/pong to terminate lingering dead clients
                 IPAddress ip = wsServer.remoteIP(id);
                 PRINT_LN("[%u] Connected from %d.%d.%d.%d url: %s", id, ip[0], ip[1], ip[2], ip[3], reinterpret_cast<const char*>(payload));
                 handleClientConnected(wsServer, id);
@@ -188,7 +191,7 @@ void handleAuth(WebSocketsServer& wsServer, uint8_t id, const String& ssid, cons
     OatsWebServer.stop();
 }
 
-void WifiSelectorHandler::reconnect(const String& portalSsid, const String& portalPass, size_t timeoutMs)
+void WifiSelectorHandler::reconnect(const String& portalSsid, const String& portalPass, size_t timeoutMs, int httpPort, uint16_t wsPort)
 {
     // Attempt to reconnect to the previous network
     if (WifiWrapper.connect("", "", timeoutMs)) {
@@ -202,7 +205,7 @@ void WifiSelectorHandler::reconnect(const String& portalSsid, const String& port
     }
 
     // Upon failure, show the Wifi Selector
-    OatsWebServer.setHandler(WifiSelector);
+    OatsWebServer.setHandler(WifiSelector, httpPort, wsPort);
 
     // Route all traffic to 192.168.4.1 (default IP of esp)
     DNSServer dnsServer;

@@ -26,14 +26,16 @@ public:
      *          The function returns when the ESP successully connects to
      *          a network specified through the WiFi selector page
      *
-     * @param ssid Optional - The name the ESP should use as its network name, if not specified, defaults to "esp8266-oats"
-     * @param pass Optional - A password to protect the network, defaults to no password
+     * @param portalSsid Optional - The name the ESP should use as its network name, if not specified, defaults to "esp8266-oats"
+     * @param portalPass Optional - A password to protect the network, defaults to no password
      * @param timeoutMs Optional - The duration in ms to attempt initial connection.
      *                  If connection fails, connection attempts will stop
      *                  and the WiFi selector will be available via HTTP.
      *                  Defaults to 10 seconds
+     * @param httpPort Optional - The port the HTTP server should listen
+     * @param wsPort Optional - The port the websocket server should listen
      */
-    void reconnect(const String& portalSsid = "esp8266-oats", const String& portalPass = "", size_t timeoutMs = 10000);
+    void reconnect(const String& portalSsid = "esp8266-oats", const String& portalPass = "", size_t timeoutMs = 10000, int httpPort = 80, uint16_t wsPort = 8080);
 };
 
 extern WifiSelectorHandler WifiSelector;
